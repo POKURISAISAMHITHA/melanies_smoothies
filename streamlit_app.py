@@ -27,7 +27,7 @@ pd_df = my_dataframe.to_pandas()
 ingredients_list =st.multiselect(
 'Choose up to 5 ingredients:'
 ,my_dataframe)
-ingredients_string="
+ingredients_string=''
 if ingredients_list:
     
     ingredients_string =""
