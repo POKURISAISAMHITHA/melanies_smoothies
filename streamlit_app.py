@@ -1,8 +1,6 @@
 # Import python packages
 
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
-
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -23,6 +21,10 @@ session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('fruit_name'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
+
+cnx= st.connection("snowflake")
+session = cnx.session()
+
 ingredients_list =st.multiselect(
 'Choose up to 5 ingredients:'
 ,my_dataframe
@@ -33,7 +35,8 @@ if ingredients_list:
     ingredients_string =''
     for fruit_chosen in ingredients_list:
         ingredients_string +=fruit_chosen + ' '
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        st. subheader(fruit_chosen + 'Nutrition Information')
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon"+fruit_chosen)
         sf_df =(st.dataframe(data=smoothiefroot_response.json(), use_container_width=True))
 
     #st.write(ingredients_string) 
