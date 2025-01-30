@@ -14,7 +14,7 @@ st.write(
 
 
 Name_on_order = st.text_input('Name_on_smoothie:')
-st.write('The name on smoothie will be:',Name_on_order )
+st.write('The name on smoothie will be:', Name_on_order )
 
 
 cnx = st.connection("snowflake")
@@ -50,7 +50,7 @@ if ingredients_list:
     #st.write(ingredients_string) 
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
-                values ('""" + ingredients_string + """','""" + Name_on_order + """"')"""
+                values ('""" + ingredients_string + """','""" + Name_on_order + """')"""
     #st.write(my_insert_stmt)
     #st.stop()
     
