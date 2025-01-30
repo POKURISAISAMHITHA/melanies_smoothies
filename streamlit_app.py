@@ -45,6 +45,11 @@ if ingredients_list:
             st.error("Please enter a fruit name before searching.")
         else:
             smoothiefroot_response = requests.get("https://fruityvice.com/api/fruit/" + search_on)
+        if 'smoothiefroot_response' in locals():
+            sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        else:
+            st.error("No data available. Please make sure to enter a valid fruit name.")
+        
 
      
        
